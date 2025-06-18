@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "623200839807",
+    "project_id": "foodecommerce-c00fa",
+    "storage_bucket": "foodecommerce-c00fa.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:623200839807:android:a7aa6da31f2a883924774a",
+        "android_client_info": {
+          "package_name": "com.example.foodecommerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8AVXYUNL6hagp5mh4Pk4WsiLOnJxhAm0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
