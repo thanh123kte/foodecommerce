@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:foodecommerce/controller/category_controller.dart';
 import 'package:foodecommerce/controller/food_controller.dart';
+import 'package:foodecommerce/controller/seller_controller.dart';
 import 'package:foodecommerce/model/category.dart';
 import 'package:foodecommerce/model/food.dart';
 import 'package:foodecommerce/view/customer/cus_home_component/banner_slider.dart';
 import 'package:foodecommerce/view/customer/cus_home_component/category_slidable.dart';
-import 'package:foodecommerce/view/customer/food_list.dart';
+import 'package:foodecommerce/view/customer/food_horizontal_list.dart';
+import 'package:foodecommerce/view/customer/shop_list.dart';
 import 'package:provider/provider.dart';
 
 
@@ -29,8 +31,25 @@ class _HomePageState extends State<HomePage> {
     await Future.wait([
       _loadCategories(),
       _loadPopularFoods(),
+      _loadShops()
     ]);
+  } 
+
+  Future<void> _loadShops() async {
+    final shopController = Provider.of<ShopController>(context, listen: false);
+    
+    bool success = await shopController.fetchShops();
+    
+    if (!success && mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(shopController.errorMessage ?? 'Failed to load shops'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
+
 
   Future<void> _loadCategories() async {
     final categoryController = Provider.of<CategoryController>(context, listen: false);
@@ -246,7 +265,6 @@ class _HomePageState extends State<HomePage> {
               ),
               
               const SizedBox(height: 24),
-              
               // Popular Items Section
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -293,6 +311,65 @@ class _HomePageState extends State<HomePage> {
               ),
               
               const SizedBox(height: 20),
+
+              // Shop list section
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Quán ăn gần bạn',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/shops');
+                      },
+                      child: const Text(
+                        'See All',
+                        style: TextStyle(
+                          color: Color(0xFF9C27B0),
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 12),
+
+              // Shop List
+              Consumer<ShopController>(
+                builder: (context, shopController, child) {
+                  return ShopListSection(
+                    shops: shopController.featuredShops,
+                    isLoading: shopController.isLoading,
+                    onShopTap: (shop) {
+                      print("shopId: ${shop.shopId} - shopName: ${shop.shopName}");
+                      Navigator.pushNamed(
+                        context,
+                        '/shop-detail',
+                        arguments: {
+                          'shopId': shop.shopId,
+                          'shop': shop,
+                        },
+                      );
+                    },
+                    onSeeAllTap: () {
+                      Navigator.pushNamed(context, '/shops');
+                    },
+                  );
+                },
+              ),
+              const SizedBox(height: 24),
+              
             ],
           ),
         ),

@@ -12,7 +12,20 @@
           "package_name": "com.example.foodecommerce"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "623200839807-su0g0ctvrtghtjavhaot887dhtfk3gnc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.foodecommerce",
+            "certificate_hash": "fc46df6c98eabb8aacb2a7d9da7b98c32ea57db4"
+          }
+        },
+        {
+          "client_id": "623200839807-4mkg43p2dqj98kh109qvu5vqa7tn6eo8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyC8AVXYUNL6hagp5mh4Pk4WsiLOnJxhAm0"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "623200839807-4mkg43p2dqj98kh109qvu5vqa7tn6eo8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "623200839807-dtuvlceptfi1go2bqadmfre57g3ocjv5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.foodecommerce"
+              }
+            }
+          ]
         }
       }
     }
