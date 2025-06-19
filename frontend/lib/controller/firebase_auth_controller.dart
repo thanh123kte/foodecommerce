@@ -51,9 +51,9 @@ class FirebaseAuthController with ChangeNotifier {
     if (email == "admin@gmail.com" && password == "123123") {
       _userData = {
         'id': 'admin',
-        'username': 'admin',
+        'fullname': 'admin',
         'email': 'admin@gmail.com',
-        'role': 'admin'
+        'role': '0', // Admin role
       };
       await _saveUserDataToPrefs();
       _setLoading(false);
@@ -128,6 +128,7 @@ class FirebaseAuthController with ChangeNotifier {
           fullname: fullname,
           email: email,
           mobile: mobile,
+          role: 2,
         );
         
         if (success) {
@@ -200,7 +201,8 @@ class FirebaseAuthController with ChangeNotifier {
             firebaseUid: _firebaseUser!.uid,
             fullname: _firebaseUser!.displayName ?? 'Google User',
             email: _firebaseUser!.email ?? '',
-            mobile: '',
+            mobile: _firebaseUser!.phoneNumber ?? '',
+            role: 2
           );
           
           if (success) {

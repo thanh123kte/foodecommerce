@@ -13,6 +13,7 @@ class AuthController {
     required String fullname,
     required String email,
     required String mobile,
+    required int role 
   }) async {
     try {
       print("Attempting to save user to database: $baseUrl/users");
@@ -28,6 +29,7 @@ class AuthController {
           'fullname': fullname,
           'email': email,
           'mobile': mobile,
+          'role': role, 
           'created_at': DateTime.now().toIso8601String(),
         }),
       ).timeout(const Duration(seconds: 15));
