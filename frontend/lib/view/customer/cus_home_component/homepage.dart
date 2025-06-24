@@ -6,6 +6,7 @@ import 'package:foodecommerce/model/category.dart';
 import 'package:foodecommerce/model/food.dart';
 import 'package:foodecommerce/view/customer/cus_home_component/banner_slider.dart';
 import 'package:foodecommerce/view/customer/cus_home_component/category_slidable.dart';
+import 'package:foodecommerce/view/customer/cus_home_component/searching_tool_screen.dart';
 import 'package:foodecommerce/view/customer/food_horizontal_list.dart';
 import 'package:foodecommerce/view/customer/shop_list.dart';
 import 'package:provider/provider.dart';
@@ -109,9 +110,14 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const FoodSearchScreen()),
+              );
+            },
             icon: const Icon(
-              Icons.notifications_outlined,
+              Icons.search_outlined,
               color: Colors.black87,
             ),
           ),
