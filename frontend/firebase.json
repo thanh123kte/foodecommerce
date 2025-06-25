@@ -1,1 +1,25 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"foodecommerce-c00fa","appId":"1:623200839807:android:a7aa6da31f2a883924774a","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"foodecommerce-c00fa","configurations":{"android":"1:623200839807:android:a7aa6da31f2a883924774a","ios":"1:623200839807:ios:0d4ef021232a94f424774a","macos":"1:623200839807:ios:0d4ef021232a94f424774a","web":"1:623200839807:web:8e6a50a94b2d32ab24774a","windows":"1:623200839807:web:caa024aa58288f1624774a"}}}}}}
+{
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "foodecommerce-c00fa",
+                    "appId": "1:623200839807:android:a7aa6da31f2a883924774a",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "foodecommerce-c00fa",
+                    "configurations": {
+                        "android": "1:623200839807:android:a7aa6da31f2a883924774a",
+                        "ios": "1:623200839807:ios:0d4ef021232a94f424774a",
+                        "macos": "1:623200839807:ios:0d4ef021232a94f424774a",
+                        "web": "1:623200839807:web:8e6a50a94b2d32ab24774a",
+                        "windows": "1:623200839807:web:caa024aa58288f1624774a"
+                    }
+                }
+            }
+        }
+    }
+}
