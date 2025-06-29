@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodecommerce/controller/firebase_auth_controller.dart';
-import 'package:foodecommerce/controller/test_fire_auth_controller.dart';
+
 import 'package:provider/provider.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
@@ -17,7 +17,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
   Future<void> _handleResetPassword(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
-      final auth = Provider.of<TestFirebaseAuthController>(context, listen: false);
+      final auth = Provider.of<FirebaseAuthController>(context, listen: false);
       
       try {
         bool success = await auth.resetPassword(_emailController.text.trim());
@@ -58,7 +58,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<TestFirebaseAuthController>(context);
+    final auth = Provider.of<FirebaseAuthController>(context);
     
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),

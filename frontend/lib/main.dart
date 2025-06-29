@@ -18,7 +18,7 @@ void main() async {
   await Firebase.initializeApp();
   
   // Initialize FirebaseAuthController
-  final firebaseAuthController = TestFirebaseAuthController();
+  final firebaseAuthController = FirebaseAuthController();
   await firebaseAuthController.initAuth();
   
   runApp(
@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false, // Thêm này để ẩn debug banner
-      home: Consumer<TestFirebaseAuthController>(
+      home: Consumer<FirebaseAuthController>(
         builder: (context, auth, child) {
           if (auth.isLoggedIn) {
             return const CusHomeScreen();

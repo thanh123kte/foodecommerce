@@ -7,6 +7,7 @@ import 'package:foodecommerce/model/food.dart';
 import 'package:foodecommerce/view/customer/cus_home_component/banner_slider.dart';
 import 'package:foodecommerce/view/customer/cus_home_component/category_slidable.dart';
 import 'package:foodecommerce/view/customer/cus_home_component/searching_tool_screen.dart';
+import 'package:foodecommerce/view/customer/food_details_screen.dart';
 import 'package:foodecommerce/view/customer/food_horizontal_list.dart';
 import 'package:foodecommerce/view/customer/shop_list.dart';
 import 'package:provider/provider.dart';
@@ -398,13 +399,11 @@ class _HomePageState extends State<HomePage> {
 
   void _handleFoodTap(BuildContext context, Food food) {
     print('Selected food: ${food.foodName} (ID: ${food.foodId})');
-    Navigator.pushNamed(
-      context,
-      '/food-detail',
-      arguments: {
-        'foodId': food.foodId,
-        'food': food,
-      },
-    );
+    Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => HomePage() //FoodDetailsScreen(food: food),
+    ),
+  );
   }
 }

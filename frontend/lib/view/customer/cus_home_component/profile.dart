@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:foodecommerce/controller/firebase_auth_controller.dart';
-import 'package:foodecommerce/controller/test_fire_auth_controller.dart';
 import 'package:foodecommerce/view/customer/cus_home_component/delivery_address.dart';
 import 'package:foodecommerce/view/customer/edit_profile.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +8,7 @@ class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   Future<void> _handleLogout(BuildContext context) async {
-    final auth = Provider.of<TestFirebaseAuthController>(context, listen: false);
+    final auth = Provider.of<FirebaseAuthController>(context, listen: false);
     
     // Show confirmation dialog
     bool? shouldLogout = await showDialog<bool>(
@@ -94,7 +93,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<TestFirebaseAuthController>(context);
+    final auth = Provider.of<FirebaseAuthController>(context);
     
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),

@@ -128,7 +128,6 @@ class FirebaseAuthController with ChangeNotifier {
           fullname: fullname,
           email: email,
           mobile: mobile,
-          role: 2,
         );
         
         if (success) {
@@ -202,7 +201,6 @@ class FirebaseAuthController with ChangeNotifier {
             fullname: _firebaseUser!.displayName ?? 'Google User',
             email: _firebaseUser!.email ?? '',
             mobile: _firebaseUser!.phoneNumber ?? '',
-            role: 2
           );
           
           if (success) {
@@ -335,7 +333,7 @@ class FirebaseAuthController with ChangeNotifier {
         await prefs.setString('user_data', jsonEncode(_userData!));
       }
     } catch (e) {
-      print("Error saving user data: $e");
+      print("Error saving user data: $e");  
     }
   }
 

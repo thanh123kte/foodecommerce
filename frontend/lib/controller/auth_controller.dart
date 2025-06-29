@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 /// Service class để xử lý database operations
 class AuthController {
-  final String baseUrl = "http://10.0.2.2:8080/api"; // Android Emulator
+  final String baseUrl = "http://10.0.2.2:8000"; // Android Emulator
   // final String baseUrl = "http://192.168.1.100:8080/api"; // Thiết bị thật
   // final String baseUrl = "https://your-api-domain.com/api"; // Production
 
@@ -13,24 +13,20 @@ class AuthController {
     required String fullname,
     required String email,
     required String mobile,
-    required int role 
   }) async {
     try {
       print("Attempting to save user to database: $baseUrl/users");
       
       final response = await http.post(
-        Uri.parse("$baseUrl/users"),
+        Uri.parse("$baseUrl/user/create"),
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: jsonEncode({
-          'firebase_uid': firebaseUid,
-          'fullname': fullname,
+          'uid': firebaseUid,
+          'name': fullname,
           'email': email,
-          'mobile': mobile,
-          'role': role, 
-          'created_at': DateTime.now().toIso8601String(),
+          'phone': mobile
         }),
       ).timeout(const Duration(seconds: 15));
 
@@ -55,14 +51,16 @@ class AuthController {
   /// Get user by Firebase UID
   Future<Map<String, dynamic>?> getUserByFirebaseUid(String firebaseUid) async {
     try {
-      print("Attempting to get user from database: $baseUrl/users/firebase/$firebaseUid");
+      print("Attempting to get user from database: $baseUrl/user/profile");
       
-      final response = await http.get(
-        Uri.parse("$baseUrl/users/firebase/$firebaseUid"),
+      final response = await http.post(
+        Uri.parse("$baseUrl/user/profile"),
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         },
+        body: jsonEncode({
+          'uid': firebaseUid
+        }),
       ).timeout(const Duration(seconds: 15));
 
       print("Database get response status: ${response.statusCode}");

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodecommerce/controller/firebase_auth_controller.dart';
-import 'package:foodecommerce/controller/test_fire_auth_controller.dart';
+
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,7 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> _handleLogin(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
-      final auth = Provider.of<TestFirebaseAuthController>(context, listen: false);
+      final auth = Provider.of<FirebaseAuthController>(context, listen: false);
       
       try {
         bool success = await auth.login(
@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> _handleGoogleSignIn(BuildContext context) async {
-    final auth = Provider.of<TestFirebaseAuthController>(context, listen: false);
+    final auth = Provider.of<FirebaseAuthController>(context, listen: false);
     
     try {
       bool success = await auth.signInWithGoogle();
@@ -98,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<TestFirebaseAuthController>(context);
+    final auth = Provider.of<FirebaseAuthController>(context);
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
       body: SafeArea(
@@ -529,7 +529,7 @@ class _LoginScreenState extends State<LoginScreen> {
               style: TextStyle(color: Colors.grey),
             ),
           ),
-          Consumer<TestFirebaseAuthController>(
+          Consumer<FirebaseAuthController>(
             builder: (context, auth, child) {
               return ElevatedButton(
                 onPressed: auth.isLoading ? null : () async {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:foodecommerce/controller/firebase_auth_controller.dart';
-import 'package:foodecommerce/controller/test_fire_auth_controller.dart';
 import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -22,7 +21,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   Future<void> _handleRegister(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
-      final auth = Provider.of<TestFirebaseAuthController>(context, listen: false);
+      final auth = Provider.of<FirebaseAuthController>(context, listen: false);
       
       try {
         bool success = await auth.register(
@@ -73,7 +72,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   Future<void> _handleGoogleSignUp(BuildContext context) async {
-    final auth = Provider.of<TestFirebaseAuthController>(context, listen: false);
+    final auth = Provider.of<FirebaseAuthController>(context, listen: false);
     
     try {
       bool success = await auth.signInWithGoogle();
@@ -111,7 +110,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<TestFirebaseAuthController>(context);
+    final auth = Provider.of<FirebaseAuthController>(context);
     
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
