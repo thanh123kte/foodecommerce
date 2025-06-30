@@ -13,6 +13,7 @@ class AuthController {
     required String fullname,
     required String email,
     required String mobile,
+    required String? avatarUrl,
   }) async {
     try {
       print("Attempting to save user to database: $baseUrl/users");
@@ -26,7 +27,8 @@ class AuthController {
           'uid': firebaseUid,
           'name': fullname,
           'email': email,
-          'phone': mobile
+          'phone': mobile,
+          'avatarUrl': avatarUrl ?? ''
         }),
       ).timeout(const Duration(seconds: 15));
 

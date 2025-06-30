@@ -59,11 +59,11 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  Future<void> _handleGoogleSignIn(BuildContext context) async {
+  Future<void> _handleGoogleLogin(BuildContext context) async {
     final auth = Provider.of<FirebaseAuthController>(context, listen: false);
     
     try {
-      bool success = await auth.signInWithGoogle();
+      bool success = await auth.logInWithGoogle();
 
       if (success) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -382,7 +382,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: ElevatedButton(
                           onPressed: auth.isLoading
                               ? null
-                              : () => _handleGoogleSignIn(context),
+                              : () => _handleGoogleLogin(context),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
                             shadowColor: Colors.transparent,
@@ -408,7 +408,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               const SizedBox(width: 12),
                               const Text(
-                                'Sign in with Google',
+                                'Login with Google',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,

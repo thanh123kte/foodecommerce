@@ -128,6 +128,7 @@ class FirebaseAuthController with ChangeNotifier {
           fullname: fullname,
           email: email,
           mobile: mobile,
+          avatarUrl: _firebaseUser!.photoURL,
         );
         
         if (success) {
@@ -201,7 +202,10 @@ class FirebaseAuthController with ChangeNotifier {
             fullname: _firebaseUser!.displayName ?? 'Google User',
             email: _firebaseUser!.email ?? '',
             mobile: _firebaseUser!.phoneNumber ?? '',
+            avatarUrl: _firebaseUser!.photoURL,
           );
+          print("firebaseuid:"
+              "${_firebaseUser!.uid}, fullname: ${_firebaseUser!.displayName}, email: ${_firebaseUser!.email}, mobile: ${_firebaseUser!.phoneNumber}, avatarUrl: ${_firebaseUser!.photoURL}");
           
           if (success) {
             _userData = await _authService.getUserByFirebaseUid(_firebaseUser!.uid);
@@ -228,6 +232,61 @@ class FirebaseAuthController with ChangeNotifier {
       _setLoading(false);
     }
   }
+
+  // google login function
+  Future<bool> logInWithGoogle() async {
+    _setLoading(true);
+    _setError(null);
+
+    try {
+      print("Attempting Google Login");
+
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+
+      if (googleUser == null) {
+        _setError("Đăng nhập Google bị hủy");
+        _setLoading(false);
+        return false;
+      }
+
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      UserCredential userCredential = await _firebaseAuth.signInWithCredential(credential);
+      _firebaseUser = userCredential.user;
+
+      print("Google Login successful. User: ${_firebaseUser?.email}");
+
+      if (_firebaseUser != null) {
+        // Chỉ kiểm tra user đã tồn tại, không tạo mới
+        _userData = await _authService.getUserByFirebaseUid(_firebaseUser!.uid);
+
+        if (_userData == null) {
+          _setError("Tài khoản chưa được đăng ký trong hệ thống");
+          _setLoading(false);
+          return false;
+        }
+
+        await _saveUserDataToPrefs();
+        _setLoading(false);
+        notifyListeners();
+        return true;
+      }
+
+      return false;
+    } catch (e) {
+      print("Google Login error: $e");
+      _setError("Lỗi đăng nhập Google: ${e.toString()}");
+      return false;
+    } finally {
+      _setLoading(false);
+    }
+  }
+
 
   /// Logout
   Future<void> logout() async {

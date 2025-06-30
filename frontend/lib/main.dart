@@ -4,7 +4,6 @@ import 'package:foodecommerce/controller/firebase_auth_controller.dart';
 import 'package:foodecommerce/controller/category_controller.dart';
 import 'package:foodecommerce/controller/food_controller.dart';
 import 'package:foodecommerce/controller/seller_controller.dart';
-import 'package:foodecommerce/controller/test_fire_auth_controller.dart';
 import 'package:foodecommerce/view/auth/login.dart';
 import 'package:foodecommerce/view/auth/register.dart';
 import 'package:foodecommerce/view/auth/reset_password.dart';

@@ -1,5 +1,5 @@
 class User {
-  final int? userId;
+  final String? userId;
   final String? email;
   final String? fullName;
   final String? phone;
@@ -25,9 +25,9 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      userId: json['user_id'],
+      userId: json['uid'],
       email: json['email'],
-      fullName: json['fullName'],
+      fullName: json['name'],
       phone: json['phone'],
       address: json['address'],
       dayOfBirth: json['dayOfBirth'] != null ? DateTime.parse(json['dayOfBirth']) : null,
